@@ -1,4 +1,11 @@
-export interface IRoot {
+import { IResponse } from "@/utils/handleResponse";
+
+export interface IGetFootballCompList extends IResponse {
+  status: number | undefined;
+  data?: IGetCompetitions;
+}
+
+export interface IGetCompetitions {
   competitions: Competition[];
 }
 
