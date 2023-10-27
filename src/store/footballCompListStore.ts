@@ -1,6 +1,10 @@
 import { IGetCompetitions } from "@/interface/footballCompList";
 import { create } from "zustand";
 
+const initCompetitionStore = {
+  competitions: [],
+};
+
 type UseCompetitionsListStoreType = {
   competitions: IGetCompetitions;
   setCompetitionsStore: (value: IGetCompetitions) => void;

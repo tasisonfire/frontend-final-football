@@ -2,10 +2,10 @@ import { IResponse } from "@/utils/handleResponse";
 
 export interface IGetFootballTeamsList extends IResponse {
   status: number | undefined;
-  data?: Root;
+  data?: IGetTeams;
 }
 
-export interface Root {
+export interface IGetTeams {
   teams: Team[];
 }
 

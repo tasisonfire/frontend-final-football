@@ -10,7 +10,7 @@ import { IGetFootballTeamsList } from "@/interface/footballTeamsList";
 
 export const footballTeamsServices = {
   getFootballTeamsList: async (
-    comp: number
+    comp: number = 0
   ): Promise<IGetFootballTeamsList> => {
     const option = {
       method: "GET",
