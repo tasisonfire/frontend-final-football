@@ -6,10 +6,10 @@ export interface IGetFootballTeamsList extends IResponse {
 }
 
 export interface IGetTeams {
-  teams: Team[];
+  teams: Teams[];
 }
 
-export interface Team {
+export interface Teams {
   id: number;
   "full-name": string;
   "short-name": string;

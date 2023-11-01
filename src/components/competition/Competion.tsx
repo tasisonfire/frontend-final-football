@@ -44,80 +44,22 @@ function Competion() {
 
   return (
     <>
-      <section>
-        {compData && compData.length > 0 ? (
-          <form action="#">
-            <label>Comptetitions</label>
-
-            <select
-              name="competitions"
-              id="comp"
-              value={selectedCompValue}
-              onChange={handleSelectChangeComp}
-            >
-              <option value="">Select Competition</option>
-              {compData
-                .filter((type) => type.type === "league")
-                .map((item) => (
-                  <option key={item.id} value={item.id}>
-                    {item["generic-name"]}
-                  </option>
-                ))}
-            </select>
-            {/* <input type="submit" value="Submit" /> */}
-          </form>
-        ) : (
-          <p>loading..</p>
-        )}
-      </section>
-      <section>
-        {teamList && teamList.length > 0 ? (
-          <form action="">
-            <label htmlFor="teams">Teams</label>
-
-            <select
-              name="teams"
-              id="teams"
-              value={selectedTeamsValue}
-              onChange={handleSelectChangeTeam}
-            >
-              <option value="">Select Team</option>
-
-              {teamList.map((item) => (
-                <option key={item.id} value={item.id}>
-                  {item["full-name"]}
-                </option>
-              ))}
-            </select>
-          </form>
-        ) : teamLoading ? (
-          <p>Loading teams data..</p>
-        ) : (
-          <p>Select competition first..</p>
-        )}
-      </section>
+      {compData && compData.length > 0 ? (
+        <ul style={{ listStyle: "none" }}>
+          {compData
+            .filter((type) => type.type === "league")
+            .map((item) => (
+              <li key={item.id} value={item.id}>
+                {item["generic-name"]}
+              </li>
+            ))}
+        </ul>
+      ) : (
+        <p>Loading..</p>
+      )}
     </>
   );
 }
-
-//   return (
-//     <>
-//       {compData && compData.length > 0 ? (
-//         <ul style={{ listStyle: "none" }}>
-//           {compData
-//             .filter((type) => type.type === "league")
-//             .map((item) => (
-//               <li key={item.id} value={item.id}>
-//                 {item["generic-name"]}
-//               </li>
-//             ))}
-//         </ul>
-//       ) : (
-//         <p>Loading..</p>
-//       )}
-//     </>
-//   );
-// }
 
 export default Competion;
 
