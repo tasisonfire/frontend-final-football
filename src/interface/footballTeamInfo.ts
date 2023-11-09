@@ -10,12 +10,12 @@ export interface TeamInfo {
 }
 
 export interface TeamDetail {
-  twitter: string;
-  website: string;
-  address: string;
-  name: string;
-  postcode: string;
-  ground: string;
-  id: number;
-  capacity: number;
+  twitter?: string;
+  website?: string;
+  address?: string;
+  name?: string;
+  postcode?: string;
+  ground?: string;
+  id?: number;
+  capacity?: number;
 }

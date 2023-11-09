@@ -9,7 +9,9 @@ import { handleResponse } from "@/utils/handleResponse";
 import { IGetTeamInfo } from "@/interface/footballTeamInfo";
 
 export const footballTeamServices = {
-  getFootballTeamInfo: async (teamId: number): Promise<IGetTeamInfo> => {
+  getFootballTeamInfo: async (
+    teamId: number | string
+  ): Promise<IGetTeamInfo> => {
     const option = {
       method: "GET",
       params: { team: teamId },

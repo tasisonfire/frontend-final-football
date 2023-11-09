@@ -1,6 +1,6 @@
 import { footballCompServices } from "@/service/allCompList";
 import { useCompetitionsListStore } from "@/store/footballCompListStore";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 export const callDataComp = () => {
   const { setCompetitionsStore, competitions } = useCompetitionsListStore();

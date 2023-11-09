@@ -10,11 +10,11 @@ import { IGetFootballTeamsList } from "@/interface/footballTeamsList";
 
 export const footballTeamsServices = {
   getFootballTeamsList: async (
-    comp: number = 0
+    compId: number = 0
   ): Promise<IGetFootballTeamsList> => {
     const option = {
       method: "GET",
-      params: { comp: comp },
+      params: { comp: compId },
       headers: {
         "X-RapidAPI-Key": FOOTBALL_API_KEY,
         "X-RapidAPI-Host": FOOTBALL_API_HOST,

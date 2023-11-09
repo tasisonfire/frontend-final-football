@@ -7,22 +7,25 @@ import { footballTeamServices } from "@/service/teamInfo";
 // import { team } from "@/utils/optionList";
 
 function Favoriteteam() {
-  const [selectedCompValue, setSelectedCompValue] = useState();
+  const [selectedCompValue, setSelectedCompValue] = useState<number>();
   const [selectedTeamsValue, setSelectedTeamsValue] = useState<number>();
   const [teamList, setTeamsList] = useState<Teams[] | undefined>([]);
   const [teamLoading, setTeamLoading] = useState(false);
-  const [favoTeam, setFavoTeam] = useState<TeamDetail[]>([]);
+  const [favoriteTeamDetail, setFavoriteTeamDetail] = useState<TeamDetail>();
 
-  const compData = callDataComp().competitions;
+  const compData = callDataComp().competitions; //use for fetch all comptertion from CompetitionHook
+
+  // use for testing competions and team list calling from store
   // const teamList = callDataTeams(selectedCompValue).teams;
   // console.log(compData);
 
+  // update competition to setSelectCompValue
   const handleSelectChangeComp = (event: any) => {
     const selectedOption = event.target.value;
-    // console.log(selectedOption);
     setSelectedCompValue(selectedOption);
   };
 
+  // will getupdate when user select competion > update teams list from selected competition
   useEffect(() => {
     if (selectedCompValue) {
       const fetchTeamData = async () => {
@@ -40,8 +43,9 @@ function Favoriteteam() {
     }
   }, [selectedCompValue]);
 
+  // check if have favorite team then will update team data to favoriteTeamDetail
   useEffect(() => {
-    const favoTeamId = localStorage.getItem("favorite team id");
+    const favoTeamId = localStorage.getItem("favo_team_id");
 
     if (favoTeamId) {
       const fetchTeamDetail = async () => {
@@ -51,7 +55,7 @@ function Favoriteteam() {
 
         console.log("api fetch team detail status:", teamDetail.status);
         // console.log(teamDetail);
-        setFavoTeam(teamDetail.data?.team);
+        setFavoriteTeamDetail(teamDetail.data?.team);
       };
 
       fetchTeamDetail();
@@ -69,26 +73,27 @@ function Favoriteteam() {
     window.location.reload();
     // const selectedOption = event.target.value;
     console.log(selectedTeamsValue);
-    localStorage.setItem("favorite team id", `${selectedTeamsValue}`);
+    localStorage.setItem("favo_team_id", `${selectedTeamsValue}`);
+    localStorage.setItem("favo_comp_id", `${selectedCompValue}`);
   };
 
   const handleCheckFavo = (event: any) => {
     event.preventDefault();
-    const favoTeam = localStorage.getItem("favorite team id");
-    console.log(favoTeam);
+    const favoriteTeamDetail = localStorage.getItem("favo_team_id");
+    console.log(favoriteTeamDetail);
   };
 
   const handleRemoveFavo = (event: any) => {
     event.preventDefault();
     window.location.reload();
-    localStorage.removeItem("favorite team id");
+    localStorage.removeItem("favo_team_id");
     console.log("Favorite team removed");
   };
 
   return (
     <>
       <div>
-        {localStorage.getItem("favorite team id") ? (
+        {localStorage.getItem("favo_team_id") ? (
           <p></p>
         ) : (
           <div>
@@ -148,14 +153,11 @@ function Favoriteteam() {
         )}
       </div>
       <section>
-        {localStorage.getItem("favorite team id") ? (
+        {localStorage.getItem("favo_team_id") ? (
           <div>
-            <p>Your favorite team is</p>
-            <ul style={{ listStyle: "none" }}>
-              <li>{favoTeam.name}</li>
-              <li>{favoTeam.id}</li>
-              <li>{favoTeam.website}</li>
-            </ul>
+            <p>
+              Your favorite team is {favoriteTeamDetail?.name?.toUpperCase()}
+            </p>
           </div>
         ) : (
           <p>No favorite team</p>
