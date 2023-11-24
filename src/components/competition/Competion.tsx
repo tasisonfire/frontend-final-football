@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { callDataComp } from "@/components/competition/CompetionHook";
 import { callDataTeams } from "../teams/TeamsHook";
 import { footballTeamsServices } from "@/service/allTeamList";
-import { Team } from "@/interface/footballTeamsList";
+import { Teams } from "@/interface/footballTeamsList";
 
 function Competion() {
   const [selectedCompValue, setSelectedCompValue] = useState();
   const [selectedTeamsValue, setSelectedTeamsValue] = useState();
-  const [teamList, setTeamsList] = useState<Team[] | undefined>([]);
+  const [teamList, setTeamsList] = useState<Teams[] | undefined>([]);
   const [teamLoading, setTeamLoading] = useState(false);
   const compData = callDataComp().competitions;
   // const teamList = callDataTeams(selectedCompValue).teams;

@@ -8,6 +8,9 @@ import { fixture } from "@/utils/optionList";
 import { handleResponse } from "@/utils/handleResponse";
 import { IGetFixtureResults } from "@/interface/footballFixtureResult";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 export const footballFixtureResultServices = {
   getFootballFixtureResult: async (
     compId: number,

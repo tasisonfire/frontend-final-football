@@ -4,7 +4,7 @@ function leagueTable() {
   return (
     <>
       <h1 className="index-header">Leage Table</h1>
-      {/* <LeagueTable /> */}
+      <div className="content-container">{/* <LeagueTable /> */}</div>
     </>
   );
 }

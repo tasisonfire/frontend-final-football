@@ -3,8 +3,41 @@ import { callDataComp } from "@/components/competition/CompetionHook";
 import { footballTeamsServices } from "@/service/allTeamList";
 import { Teams } from "@/interface/footballTeamsList";
 import { TeamDetail } from "@/interface/footballTeamInfo";
-import { footballTeamServices } from "@/service/teamInfo";
+import footballTeamServices from "@/service/teamInfo";
 // import { team } from "@/utils/optionList";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+const notifyNoFavo = () =>
+  toast.error("Please select a favorite team!", {
+    position: "bottom-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+const notifyHaveFavo = () => {
+  toast.success(`You already have favorite team!`, {
+    position: "bottom-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+};
+
+if (localStorage.getItem("favo_team_id") === null) {
+  notifyNoFavo();
+} else {
+  notifyHaveFavo();
+}
 
 function Favoriteteam() {
   const [selectedCompValue, setSelectedCompValue] = useState<number>();
@@ -50,7 +83,7 @@ function Favoriteteam() {
     if (favoTeamId) {
       const fetchTeamDetail = async () => {
         const teamDetail = await footballTeamServices.getFootballTeamInfo(
-          favoTeamId
+          Number(favoTeamId)
         );
 
         console.log("api fetch team detail status:", teamDetail.status);
@@ -87,12 +120,14 @@ function Favoriteteam() {
     event.preventDefault();
     window.location.reload();
     localStorage.removeItem("favo_team_id");
+    localStorage.removeItem("favo_comp_id");
     console.log("Favorite team removed");
   };
 
   return (
     <>
       <div>
+        <ToastContainer />
         {localStorage.getItem("favo_team_id") ? (
           <p></p>
         ) : (
@@ -141,7 +176,13 @@ function Favoriteteam() {
                       </option>
                     ))}
                   </select>
-                  <button onClick={handleFavoTeam}>Save Favorite Team</button>
+                  <button
+                    onClick={(event) => {
+                      handleFavoTeam(event);
+                    }}
+                  >
+                    Save Favorite Team
+                  </button>
                 </form>
               ) : teamLoading ? (
                 <p>Loading teams data..</p>
@@ -158,12 +199,12 @@ function Favoriteteam() {
             <p>
               Your favorite team is {favoriteTeamDetail?.name?.toUpperCase()}
             </p>
+            <button onClick={handleRemoveFavo}>Change Favorite Team</button>
           </div>
         ) : (
           <p>No favorite team</p>
         )}
-        <button onClick={handleCheckFavo}>check favo</button>
-        <button onClick={handleRemoveFavo}>remove favo</button>
+        {/* <button onClick={handleCheckFavo}>check favo</button> */}
       </section>
     </>
   );

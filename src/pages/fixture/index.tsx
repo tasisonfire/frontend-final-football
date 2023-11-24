@@ -9,10 +9,21 @@ import FixtureResult from "@/components/fixtureresult/FixtureResult";
 // };
 
 function fixture() {
+  // const apiDate = "2023-08-14";
+  // const apiNewDate = new Date(apiDate).toISOString();
+  // console.log(apiNewDate);
+
+  // const todayDate = new Date();
+  // const daysSubtracted = todayDate.setDate(todayDate.getDate() - 5);
+  // const convertedDate = new Date(daysSubtracted).toISOString();
+  // console.log(convertedDate);
+
+  // console.log(apiNewDate < convertedDate);
+
   return (
     <>
       <h1 className="index-header">Fixture</h1>
-      {/* <FixtureResult /> */}
+      <div className="content-container">{/* <FixtureResult /> */}</div>
     </>
   );
 }

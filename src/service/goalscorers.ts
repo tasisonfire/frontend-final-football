@@ -4,27 +4,28 @@ import {
   FOOTBALL_API_KEY,
   FOOTBALL_URL,
 } from "@/utils/constant";
-import { team } from "@/utils/optionList";
 import { handleResponse } from "@/utils/handleResponse";
-import { IGetTeamInfo } from "@/interface/footballTeamInfo";
+import { goalscorers } from "@/utils/optionList";
+import { IGetGoalScorers } from "@/interface/footballGoalScorers";
 
-const footballTeamServices = {
-  getFootballTeamInfo: async (teamId: Number): Promise<IGetTeamInfo> => {
+export const footballGoalScorers = {
+  getFootballGoalScorers: async (
+    compId: number,
+    teamId: number
+  ): Promise<IGetGoalScorers> => {
     const option = {
       method: "GET",
-      params: { team: teamId },
+      params: { comp: compId, team: teamId },
       headers: {
         "X-RapidAPI-Key": FOOTBALL_API_KEY,
         "X-RapidAPI-Host": FOOTBALL_API_HOST,
       },
     };
     try {
-      const response = await axios.get(`${FOOTBALL_URL}${team}`, option);
+      const response = await axios.get(`${FOOTBALL_URL}${goalscorers}`, option);
       return handleResponse.success(response);
     } catch (error: any) {
       return handleResponse.error(error);
     }
   },
 };
-
-export default footballTeamServices;
