@@ -31,6 +31,75 @@ a:active {
   padding-left: 20px;
 }
 
+select {
+  padding-left: 10px;
+  min-width: 200px;
+  height: 35px;
+  margin: 10px 10px 10px 20px;
+  font-size: medium;
+  border: none;
+  background-color: rgba(206, 206, 206, 0.351);
+  border-radius: 10px;
+}
+
+button {
+  height: 35px;
+  min-width: 100px;
+  box-shadow: inset 0px 39px 0px -24px #ffffff;
+  background: linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%);
+  background-color: #ededed;
+  border-radius: 4px;
+  border: 1px solid #dcdcdc;
+  display: inline-block;
+  cursor: pointer;
+  color: #777777;
+  font-family: Arial;
+  font-size: 15px;
+  padding: 6px 15px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #ffffff;
+}
+button:hover {
+  background: linear-gradient(to bottom, #dfdfdf 5%, #ededed 100%);
+  background-color: #dfdfdf;
+}
+button:active {
+  position: relative;
+  top: 1px;
+}
+
+label {
+  font-weight: 300;
+  font-size: 1.3rem;
+}
+
+table {
+  border: 1px solid #b3adad;
+  border-collapse: collapse;
+  padding: 5px;
+  margin: 10px;
+}
+table th {
+  border: 1px solid #b3adad;
+  padding: 5px;
+  background: #f0f0f0;
+  color: #313030;
+}
+table td {
+  border: 1px solid #b3adad;
+  text-align: center;
+  padding: 5px;
+  background: #ffffff;
+  color: #313030;
+}
+#favostanding {
+  border: 1px solid #b3adad;
+  text-align: center;
+  padding: 5px;
+  background: rgba(255, 0, 0, 0.368);
+  color: #313030;
+}
+
 /* #root {
   max-width: 1280px;
   margin: 0 auto;

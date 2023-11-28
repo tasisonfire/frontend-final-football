@@ -14,6 +14,10 @@ function FixtureResult() {
   const [teamList, setTeamsList] = useState<Teams[] | undefined>([]);
   const [selectedCompValue, setSelectedCompValue] = useState<number>(0);
 
+  const [displayedData, setDisplayedData] = useState<Match[] | undefined>([]);
+  const numberOfItemsToShow = 15;
+  const [showAll, setShowAll] = useState(false);
+
   const compData = callDataComp().competitions;
   // const teamDataList = callDataTeams().teams;
 
@@ -31,6 +35,11 @@ function FixtureResult() {
     setTeam(selectedOption);
   };
 
+  // create new date with 5 days before
+  const todayDate = new Date();
+  const daysSubtracted = todayDate.setDate(todayDate.getDate() - 15);
+  const convetedSubtractedDate = new Date(daysSubtracted).toISOString();
+
   useEffect(() => {
     const callData = async (comid: number, teamid: number) => {
       const responseList =
@@ -39,14 +48,24 @@ function FixtureResult() {
           teamid
         );
       console.log("fixture api status: ", responseList.status);
-      setFixtureResult(responseList.data?.["fixtures-results"].matches);
+      setFixtureResult(
+        showAll
+          ? responseList.data?.["fixtures-results"].matches
+          : responseList.data?.["fixtures-results"].matches
+              .filter((date) => date.date > convetedSubtractedDate)
+              .slice(0, numberOfItemsToShow)
+      );
       //   console.log(
       //     responseList.data?.["fixtures-results"].matches[1]?.["home-team"].name
       //   );
     };
 
     callData(selectedCompValue, team);
-  }, [selectedCompValue, team]);
+  }, [selectedCompValue, team, showAll]);
+
+  const showAllHandle = () => {
+    setShowAll(!showAll);
+  };
 
   useEffect(() => {
     if (selectedCompValue) {
@@ -65,10 +84,15 @@ function FixtureResult() {
     }
   }, [selectedCompValue]);
 
-  // create new date with 5 days before
-  const todayDate = new Date();
-  const daysSubtracted = todayDate.setDate(todayDate.getDate() - 15);
-  const convetedSubtractedDate = new Date(daysSubtracted).toISOString();
+  // useEffect(() => {
+  //   // Slice the data to get the desired number of items
+  //   setDisplayedData(
+  //     fixtureResult
+  //       ?.filter((date) => date.date > convetedSubtractedDate)
+  //       .slice(0, numberOfItemsToShow)
+  //   );
+  //   console.log("from fix display", displayedData);
+  // }, [fixtureResult]);
 
   return (
     <>
@@ -120,47 +144,57 @@ function FixtureResult() {
               </select>
             </form>
           ) : (
-            <p>Select competition first..</p>
+            <p></p>
           )}
         </section>
-        <table>
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Home</th>
-              <th>Away</th>
-              <th>Competition</th>
-              <th>Status</th>
-              <th>Score</th>
-            </tr>
-          </thead>
-          {fixtureResult ? (
-            fixtureResult
-              .filter((date) => date.date > convetedSubtractedDate)
-              .map((item, index) => (
-                <tbody>
-                  <tr key={item.id}>
-                    <td>{item.date}</td>
-                    <td>{item["home-team"].name}</td>
-                    <td>{item["away-team"].name}</td>
-                    <td>{item.competition.name}</td>
-                    <td>{item.time}</td>
-                    <td>
-                      {item.status.short === "FT" ? (
-                        <p>
-                          {item["away-team"].score} - {item["home-team"].score}
-                        </p>
-                      ) : (
-                        <p>Match not played</p>
-                      )}
-                    </td>
-                  </tr>
-                </tbody>
-              ))
-          ) : (
-            <p>Please select competion first!</p>
-          )}
-        </table>
+        {fixtureResult ? (
+          <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Home</th>
+                  <th>Away</th>
+                  <th>Competition</th>
+                  <th>Status</th>
+                  <th>Score</th>
+                </tr>
+              </thead>
+              {fixtureResult ? (
+                fixtureResult
+                  // .filter((date) => date.date > convetedSubtractedDate)
+                  .map((item, index) => (
+                    <tbody>
+                      <tr key={item.id}>
+                        <td>{item.date}</td>
+                        <td>{item["home-team"].name}</td>
+                        <td>{item["away-team"].name}</td>
+                        <td>{item.competition.name}</td>
+                        <td>{item.time}</td>
+                        <td>
+                          {item.status.short === "FT" ? (
+                            <p>
+                              {item["away-team"].score} -{" "}
+                              {item["home-team"].score}
+                            </p>
+                          ) : (
+                            <p>Match not played</p>
+                          )}
+                        </td>
+                      </tr>
+                    </tbody>
+                  ))
+              ) : (
+                <p>Please select competion first!</p>
+              )}
+            </table>
+            <button onClick={showAllHandle}>
+              {showAll ? "Show Less" : "Show All"}
+            </button>
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     </>
   );

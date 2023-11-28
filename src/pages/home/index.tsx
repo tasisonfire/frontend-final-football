@@ -71,7 +71,7 @@ function index() {
         <div className="content-container">
           <div className="comp-list">
             {/* <Teams compid={{ compId: 1 }} /> */}
-            {/* <Favoriteteam />
+            <Favoriteteam />
             {favoriteCompID || favoriteTeamID ? (
               <div>
                 <FixtureReuse />
@@ -92,20 +92,24 @@ function index() {
                     </tr>
                   </thead>
                   <tbody>
-                    {goalScorersData?.map((item) => (
-                      <tr key={item.id}>
-                        <td>
-                          {item["first-name"]} {item["last-name"]}
-                        </td>
-                        <td>{item.goals.length}</td>
-                      </tr>
-                    ))}
+                    {goalScorersData
+                      ?.sort((a, b) =>
+                        a.goals.length < b.goals.length ? 1 : -1
+                      )
+                      .map((item) => (
+                        <tr key={item.id}>
+                          <td>
+                            {item["first-name"]} {item["last-name"]}
+                          </td>
+                          <td>{item.goals.length}</td>
+                        </tr>
+                      ))}
                   </tbody>
                 </table>
               </div>
             ) : (
               <></>
-            )} */}
+            )}
           </div>
         </div>
       </div>

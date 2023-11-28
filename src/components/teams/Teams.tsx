@@ -70,24 +70,31 @@ function Teams() {
       )}
       <p>
         <div>
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Scored</th>
-              </tr>
-            </thead>
-            <tbody>
-              {goalScorers?.map((item) => (
-                <tr key={item.id}>
-                  <td>
-                    {item["first-name"]} {item["last-name"]}
-                  </td>
-                  <td>{item.goals.length}</td>
+          {goalScorers ? (
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Scored</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {goalScorers
+                  ?.sort((a, b) => (a.goals.length < b.goals.length ? 1 : -1))
+                  .map((item) => (
+                    <tr key={item.id}>
+                      <td>
+                        {item["first-name"]} {item["last-name"]}
+                      </td>
+                      <td>{item.goals.length}</td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          ) : (
+            <></>
+          )}
+
           {/* <p>{item.goals.map((item) => item.match["home-team"].score)}</p> */}
         </div>
       </p>

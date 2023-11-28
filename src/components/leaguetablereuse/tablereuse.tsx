@@ -47,22 +47,22 @@ function LeagueTableReuse() {
                   return (
                     <tbody>
                       {item.id === Number(favoriteTeamID) ? (
-                        <tr
-                          style={{
-                            color: "red",
-                            font: "bold",
-                          }}
-                          key={item.id}
-                        >
-                          <td>{index + 1}</td>
-                          <td>{item.name}</td>
-                          <td>{item["all-matches"]?.played}</td>
-                          <td>{item["all-matches"]?.won}</td>
-                          <td>{item["all-matches"]?.drawn}</td>
-                          <td>{item["all-matches"]?.lost}</td>
-                          <td>{item["all-matches"]?.for}</td>
-                          <td>{item["all-matches"]?.against}</td>
-                          <td>{totalPoints}</td>
+                        <tr key={item.id}>
+                          <td id="favostanding">{index + 1}</td>
+                          <td id="favostanding">{item.name}</td>
+                          <td id="favostanding">
+                            {item["all-matches"]?.played}
+                          </td>
+                          <td id="favostanding">{item["all-matches"]?.won}</td>
+                          <td id="favostanding">
+                            {item["all-matches"]?.drawn}
+                          </td>
+                          <td id="favostanding">{item["all-matches"]?.lost}</td>
+                          <td id="favostanding">{item["all-matches"]?.for}</td>
+                          <td id="favostanding">
+                            {item["all-matches"]?.against}
+                          </td>
+                          <td id="favostanding">{totalPoints}</td>
                         </tr>
                       ) : (
                         <tr key={item.id}>
@@ -74,7 +74,8 @@ function LeagueTableReuse() {
                           <td>{item["all-matches"]?.lost}</td>
                           <td>{item["all-matches"]?.for}</td>
                           <td>{item["all-matches"]?.against}</td>
-                          <td>{totalPoints}</td>
+                          <td>{item["total-points"]}</td>
+                          {/* <td>{totalPoints}</td> */}
                         </tr>
                       )}
                     </tbody>

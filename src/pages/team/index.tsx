@@ -6,7 +6,9 @@ function team() {
   return (
     <>
       <h1 className="index-header">Team</h1>
-      <div className="content-container">{/* <Teams /> */}</div>
+      <div className="content-container">
+        <Teams />
+      </div>
     </>
   );
 }

@@ -99,7 +99,8 @@ function LeagueTable() {
                         <td>{item["all-matches"]?.lost}</td>
                         <td>{item["all-matches"]?.for}</td>
                         <td>{item["all-matches"]?.against}</td>
-                        <td>{totalPoints}</td>
+                        <td>{item["total-points"]}</td>
+                        {/* <td>{totalPoints}</td> */}
                       </tr>
                     </tbody>
                   );

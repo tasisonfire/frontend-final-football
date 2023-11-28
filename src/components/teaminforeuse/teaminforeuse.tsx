@@ -15,7 +15,7 @@ function TeamInfoReuse() {
       setTeamName(responseLIst.data?.team);
     };
     callTeamDetailData();
-  }, [teamName]);
+  }, []);
 
   return (
     <>
