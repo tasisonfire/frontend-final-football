@@ -55,49 +55,66 @@ function Teams() {
       <CompTeamInput handleChanges={handleChangesCompTeam} />
       {/* <p>Comp ID is {Number(parentState.selectedCompValue)}</p>
       <p>Team ID is {Number(parentState.team)}</p> */}
-      {teamName ? (
-        <div>
-          <p>Team name is {teamName?.name}</p>
-          <p>Address is {teamName?.address}</p>
-          <p>Stadium capacity is {teamName?.capacity}</p>
-          <p>Stadium name is {teamName?.ground}</p>
-          <p>
-            Website is <a href={teamName?.website}>{teamName?.website}</a>
-          </p>
-        </div>
-      ) : (
-        <p></p>
-      )}
-      <p>
+      <div className="grid-2">
+        {teamName ? (
+          <div className="team-detail-container">
+            <div className="table-header">
+              <span>Team Infomation</span>
+            </div>
+            <div className="team-detail-span">
+              <span>Team name is {teamName?.name}</span>
+              <span>Address is {teamName?.address}</span>
+              <span>Stadium capacity is {teamName?.capacity}</span>
+              <span>Stadium name is {teamName?.ground}</span>
+              <span>
+                Website is <a href={teamName?.website}>{teamName?.website}</a>
+              </span>
+            </div>
+          </div>
+        ) : (
+          <p></p>
+        )}
+
         <div>
           {goalScorers ? (
-            <table>
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Scored</th>
-                </tr>
-              </thead>
-              <tbody>
-                {goalScorers
-                  ?.sort((a, b) => (a.goals.length < b.goals.length ? 1 : -1))
-                  .map((item) => (
-                    <tr key={item.id}>
-                      <td>
-                        {item["first-name"]} {item["last-name"]}
-                      </td>
-                      <td>{item.goals.length}</td>
+            <>
+              <div className="table-container">
+                <div className="table-header">
+                  <span>Most Goal Scorer</span>
+                </div>
+                <div className="most-goalscorers-table"></div>
+
+                <table>
+                  <thead>
+                    <tr id="goal-header">
+                      <th>Name</th>
+                      <th>Scored</th>
                     </tr>
-                  ))}
-              </tbody>
-            </table>
+                  </thead>
+                  <tbody>
+                    {goalScorers
+                      ?.sort((a, b) =>
+                        a.goals.length < b.goals.length ? 1 : -1
+                      )
+                      .map((item) => (
+                        <tr id="goal-content" key={item.id}>
+                          <td>
+                            {item["first-name"]} {item["last-name"]}
+                          </td>
+                          <td>{item.goals.length}</td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+              </div>
+            </>
           ) : (
             <></>
           )}
 
           {/* <p>{item.goals.map((item) => item.match["home-team"].score)}</p> */}
         </div>
-      </p>
+      </div>
     </>
   );
 }

@@ -1,19 +1,113 @@
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+/* .league-table {
+  border: 1px solid white;
+  padding: 20px;
+  margin: 20px;
+
+  border-collapse: collapse;
 }
 
-.index-header {
-  color: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-}
+.league-table-head {
+  background-color: rgb(67, 67, 67);
+  padding: 20px;
+} */
 
 .content-container {
   display: flex;
+  flex-direction: column;
+}
+
+.table-container {
+  min-width: 900px;
+  padding: 20px;
+  background-color: #2d2d2d;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+
+  box-shadow: rgba(0, 0, 0, 0.385) 0px 25px 50px -12px;
+}
+
+.table-header {
+  padding-bottom: 20px;
+}
+
+.table-header > span {
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+
+table {
+  background-color: #333333;
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td,
+table th {
+  border: 0px solid #aaaaaa;
+  padding: 10px 15px;
+  text-align: center;
+}
+
+table td:nth-child(2),
+table th:nth-child(2) {
+  text-align: left;
+  font-weight: 500;
+}
+
+.table td:last-child {
+  font-weight: 500;
+}
+
+table tbody td {
+  font-size: 16px;
+  color: #ffffff;
+}
+
+table tr:nth-child(even) {
+  background: #2d2d2d;
+}
+table thead {
+  background: #2d2d2d;
+}
+table thead th {
+  font-size: 15px;
+  font-weight: bold;
+  color: #ffffff;
+}
+table tfoot td {
+  font-size: 14px;
+}
+table tfoot .links {
+  text-align: right;
+}
+table tfoot .links a {
+  display: inline-block;
+  background: #1c6ea4;
+  color: #ffffff;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+
+form {
+  display: flex;
   justify-content: center;
-  align-items: center;
+  margin-bottom: 20px;
+}
+
+.grid-2 {
+  margin-bottom: 30px;
+}
+
+.most-goal-container,
+.team-info-container {
+  padding: 20px;
+  background-color: #2d2d2d;
+  border-radius: 16px;
+  box-shadow: rgba(0, 0, 0, 0.385) 0px 25px 50px -12px;
+}
+
+.team-info-container {
+  height: 300px;
 }

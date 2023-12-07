@@ -67,46 +67,52 @@ function index() {
   return (
     <>
       <div>
-        <h1 className="index-header">home</h1>
+        {/* <h1 className="index-header">home</h1> */}
         <div className="content-container">
           <div className="comp-list">
             {/* <Teams compid={{ compId: 1 }} /> */}
             <Favoriteteam />
             {favoriteCompID || favoriteTeamID ? (
               <div>
-                <FixtureReuse />
+                {/* <FixtureReuse /> */}
                 <LeagueTableReuse />
-                <TeamInfoReuse />
               </div>
             ) : (
-              <p>Please select favorites first</p>
+              <p></p>
             )}
             {goalScorersData ? (
-              <div>
-                <h1>Most Goalscorer</h1>
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Name</th>
-                      <th>Scored</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {goalScorersData
-                      ?.sort((a, b) =>
-                        a.goals.length < b.goals.length ? 1 : -1
-                      )
-                      .map((item) => (
-                        <tr key={item.id}>
-                          <td>
-                            {item["first-name"]} {item["last-name"]}
-                          </td>
-                          <td>{item.goals.length}</td>
+              <>
+                <div className="grid-2">
+                  <div className="team-info-container">
+                    <TeamInfoReuse />
+                  </div>
+                  <div className="most-goal-container">
+                    <h1>Most Goalscorer</h1>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Scored</th>
                         </tr>
-                      ))}
-                  </tbody>
-                </table>
-              </div>
+                      </thead>
+                      <tbody>
+                        {goalScorersData
+                          ?.sort((a, b) =>
+                            a.goals.length < b.goals.length ? 1 : -1
+                          )
+                          .map((item) => (
+                            <tr key={item.id}>
+                              <td>
+                                {item["first-name"]} {item["last-name"]}
+                              </td>
+                              <td>{item.goals.length}</td>
+                            </tr>
+                          ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </>
             ) : (
               <></>
             )}

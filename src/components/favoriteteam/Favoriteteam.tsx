@@ -131,11 +131,11 @@ function Favoriteteam() {
         {localStorage.getItem("favo_team_id") ? (
           <p></p>
         ) : (
-          <div>
+          <div className="dropdown-container">
             <section>
               {compData && compData.length > 0 ? (
                 <form action="#">
-                  <label>Comptetitions</label>
+                  {/* <label>Comptetitions</label> */}
 
                   <select
                     name="competitions"
@@ -159,9 +159,9 @@ function Favoriteteam() {
               )}
             </section>
             <section>
-              {teamList && teamList.length > 0 ? (
+              <div>
                 <form action="">
-                  <label htmlFor="teams">Teams</label>
+                  {/* <label htmlFor="teams">Teams</label> */}
                   <select
                     name="teams"
                     id="teams"
@@ -170,7 +170,7 @@ function Favoriteteam() {
                   >
                     <option value="">Select Team</option>
 
-                    {teamList.map((item) => (
+                    {teamList?.map((item) => (
                       <option key={item.id} value={item.id}>
                         {item["full-name"]}
                       </option>
@@ -181,28 +181,27 @@ function Favoriteteam() {
                       handleFavoTeam(event);
                     }}
                   >
-                    Save Favorite Team
+                    Save
                   </button>
                 </form>
-              ) : teamLoading ? (
-                <p>Loading teams data..</p>
-              ) : (
-                <p>Select competition first..</p>
-              )}
+              </div>
             </section>
           </div>
         )}
       </div>
       <section>
         {localStorage.getItem("favo_team_id") ? (
-          <div>
-            <p>
-              Your favorite team is {favoriteTeamDetail?.name?.toUpperCase()}
+          <div className="choose-team-container">
+            <p id="favorite-team-title">
+              Your favorite team is{" "}
+              <span id="name-favo-span">
+                {favoriteTeamDetail?.name?.toUpperCase()}
+              </span>
             </p>
             <button onClick={handleRemoveFavo}>Change Favorite Team</button>
           </div>
         ) : (
-          <p>No favorite team</p>
+          <p></p>
         )}
         {/* <button onClick={handleCheckFavo}>check favo</button> */}
       </section>

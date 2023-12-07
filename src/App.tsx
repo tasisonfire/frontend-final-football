@@ -24,15 +24,34 @@ function App() {
       element: <Team />,
     },
   ]);
+
   return (
     <>
-      <div>
+      <div className="main-container">
         <div className="navigation">
-          <a href="/">Home</a>
-          <a href="/league-table">Table</a>
-          <a href="/fixture">Fixture</a>
-          <a href="team">Team</a>
+          <a href="/">
+            <i className="fa-solid fa-house" style={{ color: "white" }}></i>Home
+          </a>
+          <a href="/league-table">
+            <i
+              className="fa-solid fa-table-list"
+              style={{ color: "white" }}
+            ></i>
+            Table
+          </a>
+
+          <a href="/fixture">
+            <i
+              className="fa-solid fa-calendar-days"
+              style={{ color: "white" }}
+            ></i>
+            Fixture
+          </a>
+          <a href="team">
+            <i className="fa-solid fa-users" style={{ color: "white" }}></i>Team
+          </a>
         </div>
+        <hr />
         <RouterProvider router={router} />
       </div>
     </>

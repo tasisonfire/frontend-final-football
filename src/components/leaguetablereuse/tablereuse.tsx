@@ -2,6 +2,8 @@ import { footballLeageTableServices } from "@/service/leagueTableList";
 import { useEffect, useState } from "react";
 import { Team } from "@/interface/footballTableList";
 
+import "./styles.css";
+
 function LeagueTableReuse() {
   const [teamsData, setTeamsData] = useState<Team[] | undefined>([]);
   const [selectedTeamsValue, setSelectedTeamsValue] = useState<number>();
@@ -22,10 +24,10 @@ function LeagueTableReuse() {
   return (
     <>
       <div>
-        <div>
+        <div className="home-table-container">
           <h1>Table Points</h1>
           {teamsData ? (
-            <table>
+            <table className="home-table">
               <thead>
                 <tr>
                   <th>Index</th>
@@ -45,7 +47,7 @@ function LeagueTableReuse() {
                     (item["all-matches"]?.won || 0) * 3 +
                     (item["all-matches"]?.drawn || 0);
                   return (
-                    <tbody>
+                    <>
                       {item.id === Number(favoriteTeamID) ? (
                         <tr key={item.id}>
                           <td id="favostanding">{index + 1}</td>
@@ -78,7 +80,7 @@ function LeagueTableReuse() {
                           {/* <td>{totalPoints}</td> */}
                         </tr>
                       )}
-                    </tbody>
+                    </>
                   );
                 })
               ) : (

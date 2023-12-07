@@ -49,36 +49,37 @@ export function CompTeamInput({ handleChanges }: THandleChanges) {
 
   return (
     <>
-      <section>
-        {compData && compData.length > 0 ? (
-          <form action="#">
-            <label>Comptetitions</label>
+      <div className="competition-team-container">
+        <section>
+          {compData && compData.length > 0 ? (
+            <form action="#">
+              {/* <label>Comptetitions</label> */}
 
-            <select
-              name="competitions"
-              id="comp"
-              value={selectedCompValue}
-              onChange={handleSelectChangeComp}
-            >
-              <option value="">Select Competition</option>
-              {compData
-                .filter((type) => type.type === "league")
-                .map((item) => (
-                  <option key={item.id} value={item.id}>
-                    {item["generic-name"]}
-                  </option>
-                ))}
-            </select>
-            {/* <input type="submit" value="Submit" /> */}
-          </form>
-        ) : (
-          <p>loading..</p>
-        )}
-      </section>
-      <section>
-        {teamsList && teamsList.length > 0 ? (
+              <select
+                name="competitions"
+                id="comp"
+                value={selectedCompValue}
+                onChange={handleSelectChangeComp}
+              >
+                <option value="">Select Competition</option>
+                {compData
+                  .filter((type) => type.type === "league")
+                  .map((item) => (
+                    <option key={item.id} value={item.id}>
+                      {item["generic-name"]}
+                    </option>
+                  ))}
+              </select>
+              {/* <input type="submit" value="Submit" /> */}
+            </form>
+          ) : (
+            <p>loading..</p>
+          )}
+        </section>
+        <section>
+          {/* {teamsList && teamsList.length > 0 ? ( */}
           <form action="">
-            <label htmlFor="teams">Teams</label>
+            {/* <label htmlFor="teams">Teams</label> */}
             <select
               name="teams"
               id="teams"
@@ -87,17 +88,18 @@ export function CompTeamInput({ handleChanges }: THandleChanges) {
             >
               <option value="">Select Team</option>
 
-              {teamsList.map((item) => (
+              {teamsList?.map((item) => (
                 <option key={item.id} value={item.id}>
                   {item["full-name"]}
                 </option>
               ))}
             </select>
           </form>
-        ) : (
+          {/* ) : (
           <p>Select competition first..</p>
-        )}
-      </section>
+        )} */}
+        </section>
+      </div>
     </>
   );
 }

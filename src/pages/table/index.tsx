@@ -1,4 +1,5 @@
 import LeagueTable from "@/components/leaguetable/Leaguetable";
+import "./styles.css";
 
 function leagueTable() {
   return (
@@ -15,29 +16,61 @@ function leagueTable() {
           </select>
         </label>
         <button>select</button> */}
-
-        {/* <table>
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Home</th>
-              <th>Away</th>
-              <th>Competition</th>
-              <th>Status</th>
-              <th>Score</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>25 nov 2023</td>
-              <td>manu</td>
-              <td>everton</td>
-              <td>premiere</td>
-              <td>played</td>
-              <td>0-0</td>
-            </tr>
-          </tbody>
-        </table> */}
+        {/* <div className="table-container">
+          <div className="table-header">
+            <span>REGULAR SEASON</span>
+          </div>
+          <table className="league-table">
+            <thead className="league-table-head">
+              <tr>
+                <th>Index</th>
+                <th>Name</th>
+                <th>Played</th>
+                <th>Won</th>
+                <th>Draw</th>
+                <th>Lose</th>
+                <th>Goal For</th>
+                <th>Goal Lost</th>
+                <th>Points</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Arsenal</td>
+                <td>9</td>
+                <td>3</td>
+                <td>1</td>
+                <td>27</td>
+                <td>10</td>
+                <td>30</td>
+                <td>30</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Manchester United</td>
+                <td>9</td>
+                <td>3</td>
+                <td>1</td>
+                <td>27</td>
+                <td>10</td>
+                <td>30</td>
+                <td>30</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>New Castle United the football club</td>
+                <td>9</td>
+                <td>3</td>
+                <td>1</td>
+                <td>27</td>
+                <td>10</td>
+                <td>30</td>
+                <td>30</td>
+              </tr>
+            </tbody>
+          </table>
+        </div> */}
       </div>
     </>
   );

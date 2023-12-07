@@ -37,40 +37,44 @@ function FixtureReuse() {
     <>
       <div>
         <h1>fixture table</h1>{" "}
-        {fixtureResult ? (
-          <>
-            <div className="competition-container">
-              <div className="competition-header">
-                <span>Fixture Table</span>
-              </div>
-              {fixtureResult.map((item) => (
-                <div className="game-row">
-                  <div className="game-date">
-                    <span>{item.date}</span>
-                  </div>
-                  <div className="home-team">{item["home-team"].name}</div>
-                  {item.status.full !== "Full Time" ? (
-                    <>
-                      <div className="result"> - </div>
-                    </>
-                  ) : (
-                    <>
-                      <div className="result">
-                        {item["home-team"].score} - {item["away-team"].score}
-                      </div>
-                    </>
-                  )}
-
-                  <div className="away-team">{item["away-team"].name}</div>
-                </div>
-              ))}
-            </div>
-          </>
-        ) : (
-          <>
-            <p>asdf</p>
-          </>
-        )}
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Home</th>
+              <th>Away</th>
+              <th>Competition</th>
+              <th>Status</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          {fixtureResult ? (
+            fixtureResult
+              .filter((date) => date.date > convetedSubtractedDate)
+              .map((item, index) => (
+                <tbody>
+                  <tr key={item.id}>
+                    <td>{item.date}</td>
+                    <td>{item["home-team"].name}</td>
+                    <td>{item["away-team"].name}</td>
+                    <td>{item.competition.name}</td>
+                    <td>{item.time}</td>
+                    <td>
+                      {item.status.short === "FT" ? (
+                        <>
+                          {item["away-team"].score} - {item["home-team"].score}
+                        </>
+                      ) : (
+                        <p>Match not played</p>
+                      )}
+                    </td>
+                  </tr>
+                </tbody>
+              ))
+          ) : (
+            <p>Please select competion first!</p>
+          )}
+        </table>
       </div>
     </>
   );
