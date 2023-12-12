@@ -4,7 +4,7 @@ export const leagueTableStyle = {
       "background-image":
         'url("https://www.premierleague.com/resources/rebrand/v7.134.0/i/elements/backgrounds/primary-graphic.svg"),url("https://www.premierleague.com/resources/rebrand/v7.134.0/i/elements/backgrounds/primary-bg.svg")',
     },
-    logo: "public/assets/premiere-league-logo-white.png",
+    logo: "public/premiere-league-logo-white.png",
   },
   seriea: {
     style: {
