@@ -247,3 +247,14 @@ input[type="text"]:-ms-input-placeholder {
   /* margin: 20px 0 0px 0; */
   place-items: center;
 }
+
+.loading {
+  margin: 30px;
+  width: 100px;
+}
+
+/* .navigation > a {
+  border: 1px solid white;
+  background-color: red;
+  padding: 10px;
+} */

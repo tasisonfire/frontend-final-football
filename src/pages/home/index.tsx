@@ -1,4 +1,3 @@
-"use client";
 // import { footballCompServices } from "@/service/allCompList";
 // import { footballTeamsServices } from "@/service/allTeamList";
 // import footballTeamServices from "@/service/teamInfo";

@@ -1,5 +1,6 @@
 import LeagueTable from "@/components/leaguetable/Leaguetable";
 import "./styles.css";
+import { leagueTableStyle } from "@/utils/leagueTableStyle";
 
 function leagueTable() {
   return (
@@ -17,8 +18,21 @@ function leagueTable() {
         </label>
         <button>select</button> */}
         {/* <div className="table-container">
-          <div className="table-header">
-            <span>REGULAR SEASON</span>
+          <div
+            className="table-header-league"
+            style={{
+              backgroundImage:
+                leagueTableStyle.englishpremiere.style["background-image"],
+              backgroundColor:
+                leagueTableStyle.germany.style["background-color"],
+            }}
+          >
+            <span>REGULAR SEASON!</span>
+            <div className="competition-logo">
+
+              <img src={leagueTableStyle.englishpremiere.logo} alt="" />
+
+            </div>
           </div>
           <table className="league-table">
             <thead className="league-table-head">

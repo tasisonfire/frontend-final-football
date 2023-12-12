@@ -9,6 +9,7 @@ import { Teams } from "@/interface/footballTeamsList";
 import { FiveDaysDynamic } from "../dynamicDays";
 
 import { workingFixture } from "@/utils/workingFixture";
+import Loading from "../loading";
 
 type TParentState = {
   pickDateStart: Date;
@@ -227,7 +228,7 @@ function FixtureResult() {
             </select>
           </form>
         ) : (
-          <p>loading..</p>
+          <Loading />
         )}
       </section>
       {selectedCompValue ? (

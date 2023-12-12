@@ -87,4 +87,5 @@
 
 .competition-team-container {
   display: flex;
+  flex-direction: row;
 }

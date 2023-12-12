@@ -1,6 +1,7 @@
 import { footballLeageTableServices } from "@/service/leagueTableList";
 import { useEffect, useState } from "react";
 import { Team } from "@/interface/footballTableList";
+import { leagueTableStyle } from "@/utils/leagueTableStyle";
 
 import "./styles.css";
 
@@ -8,6 +9,7 @@ function LeagueTableReuse() {
   const [teamsData, setTeamsData] = useState<Team[] | undefined>([]);
   const [selectedTeamsValue, setSelectedTeamsValue] = useState<number>();
   const [selectedCompValue, setSelectedCompValue] = useState<number>(0);
+  const [leagueName, setLeagueName] = useState<unknown>("");
 
   const favoriteCompID = localStorage.getItem("favo_comp_id");
   const favoriteTeamID = localStorage.getItem("favo_team_id");
@@ -17,15 +19,114 @@ function LeagueTableReuse() {
       const responseList =
         await footballLeageTableServices.getFootballLeageTable(comId);
       setTeamsData(responseList.data?.["league-table"].teams);
+      setLeagueName(responseList.data?.["league-table"].competition.name);
     };
     callDataTable(Number(favoriteCompID));
   }, []);
+
+  const tableHeaderStyle = () => {
+    if (leagueName === "Premier League") {
+      return (
+        <>
+          <div
+            className="table-header-league"
+            style={{
+              backgroundImage:
+                leagueTableStyle.englishpremiere.style["background-image"],
+            }}
+          >
+            <span>{String(leagueName).toUpperCase()}</span>
+            <div className="competition-logo">
+              <img src={leagueTableStyle.englishpremiere.logo} alt="" />
+            </div>
+          </div>
+        </>
+      );
+    }
+    if (leagueName === "German Bundesliga") {
+      return (
+        <>
+          <div
+            className="table-header-league"
+            style={{
+              backgroundImage:
+                leagueTableStyle.germany.style["background-image"],
+              backgroundColor:
+                leagueTableStyle.germany.style["background-color"],
+            }}
+          >
+            <span>{String(leagueName).toUpperCase()}</span>
+            <div className="competition-logo">
+              <img src={leagueTableStyle.germany.logo} alt="" />
+            </div>
+          </div>
+        </>
+      );
+    }
+    if (leagueName === "Italian Serie A") {
+      return (
+        <>
+          <div
+            className="table-header-league"
+            style={{
+              backgroundImage:
+                leagueTableStyle.seriea.style["background-image"],
+            }}
+          >
+            <span>{String(leagueName).toUpperCase()}</span>
+            <div className="competition-logo">
+              <img src={leagueTableStyle.seriea.logo} alt="" />
+            </div>
+          </div>
+        </>
+      );
+    }
+    if (leagueName === "Spanish La Liga") {
+      return (
+        <>
+          <div
+            className="table-header-league"
+            style={{
+              backgroundImage: leagueTableStyle.spain.style["background-image"],
+              backgroundColor: leagueTableStyle.spain.style["background-color"],
+            }}
+          >
+            <span>{String(leagueName).toUpperCase()}</span>
+            <div className="competition-logo">
+              <img src={leagueTableStyle.spain.logo} alt="" />
+            </div>
+          </div>
+        </>
+      );
+    }
+
+    if (leagueName) {
+      return (
+        <>
+          <div
+            className="table-header-league"
+            style={{
+              backgroundColor:
+                leagueTableStyle.default.style["background-color"],
+              backgroundImage:
+                leagueTableStyle.default.style["background-image"],
+              backgroundAttachment:
+                leagueTableStyle.default.style["background-attachment"],
+            }}
+          >
+            <span>{String(leagueName).toUpperCase()}</span>
+          </div>
+        </>
+      );
+    }
+  };
 
   return (
     <>
       <div>
         <div className="home-table-container">
-          <h1>Table Points</h1>
+          {/* <h1>Table Points</h1> */}
+          {tableHeaderStyle()}
           {teamsData ? (
             <table className="home-table">
               <thead>

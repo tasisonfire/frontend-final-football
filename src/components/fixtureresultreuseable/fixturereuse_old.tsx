@@ -53,7 +53,7 @@ function FixtureReuse() {
               .filter((date) => date.date > convetedSubtractedDate)
               .map((item, index) => (
                 <tbody>
-                  <tr key={item.id}>
+                  <tr key={item.id} id={String(index)}>
                     <td>{item.date}</td>
                     <td>{item["home-team"].name}</td>
                     <td>{item["away-team"].name}</td>

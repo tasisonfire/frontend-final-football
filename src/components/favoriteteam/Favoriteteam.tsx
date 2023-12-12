@@ -8,6 +8,7 @@ import footballTeamServices from "@/service/teamInfo";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Loading from "../loading";
 
 const notifyNoFavo = () =>
   toast.error("Please select a favorite team!", {
@@ -134,57 +135,64 @@ function Favoriteteam() {
           <div className="dropdown-container">
             <section>
               {compData && compData.length > 0 ? (
-                <form action="#">
-                  {/* <label>Comptetitions</label> */}
+                <>
+                  <div className="comp-team-container">
+                    <div>
+                      <form action="#">
+                        {/* <label>Comptetitions</label> */}
 
-                  <select
-                    name="competitions"
-                    id="comp"
-                    value={selectedCompValue}
-                    onChange={handleSelectChangeComp}
-                  >
-                    <option value="">Select Competition</option>
-                    {compData
-                      .filter((type) => type.type === "league")
-                      .map((item) => (
-                        <option key={item.id} value={item.id}>
-                          {item["generic-name"]}
-                        </option>
-                      ))}
-                  </select>
-                  {/* <input type="submit" value="Submit" /> */}
-                </form>
+                        <select
+                          name="competitions"
+                          id="comp"
+                          value={selectedCompValue}
+                          onChange={handleSelectChangeComp}
+                        >
+                          <option value="">Select Competition</option>
+                          {compData
+                            .filter((type) => type.type === "league")
+                            .map((item) => (
+                              <option key={item.id} value={item.id}>
+                                {item["generic-name"]}
+                              </option>
+                            ))}
+                        </select>
+                        {/* <input type="submit" value="Submit" /> */}
+                      </form>
+                    </div>
+                    <div>
+                      <form action="">
+                        {/* <label htmlFor="teams">Teams</label> */}
+                        <select
+                          name="teams"
+                          id="teams"
+                          value={selectedTeamsValue}
+                          onChange={handleSelectChangeTeam}
+                        >
+                          <option value="">Select Team</option>
+
+                          {teamList?.map((item) => (
+                            <option key={item.id} value={item.id}>
+                              {item["full-name"]}
+                            </option>
+                          ))}
+                        </select>
+                        <button
+                          onClick={(event) => {
+                            handleFavoTeam(event);
+                          }}
+                        >
+                          Save
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </>
               ) : (
-                <p>loading..</p>
+                <>
+                  <Loading />
+                  {/* <p>loading..</p> */}
+                </>
               )}
-            </section>
-            <section>
-              <div>
-                <form action="">
-                  {/* <label htmlFor="teams">Teams</label> */}
-                  <select
-                    name="teams"
-                    id="teams"
-                    value={selectedTeamsValue}
-                    onChange={handleSelectChangeTeam}
-                  >
-                    <option value="">Select Team</option>
-
-                    {teamList?.map((item) => (
-                      <option key={item.id} value={item.id}>
-                        {item["full-name"]}
-                      </option>
-                    ))}
-                  </select>
-                  <button
-                    onClick={(event) => {
-                      handleFavoTeam(event);
-                    }}
-                  >
-                    Save
-                  </button>
-                </form>
-              </div>
             </section>
           </div>
         )}
@@ -192,13 +200,15 @@ function Favoriteteam() {
       <section>
         {localStorage.getItem("favo_team_id") ? (
           <div className="choose-team-container">
-            <p id="favorite-team-title">
-              Your favorite team is{" "}
-              <span id="name-favo-span">
-                {favoriteTeamDetail?.name?.toUpperCase()}
-              </span>
-            </p>
-            <button onClick={handleRemoveFavo}>Change Favorite Team</button>
+            <div className="choose-team-bg">
+              <p id="favorite-team-title">
+                Your favorite team is{" "}
+                <span id="name-favo-span">
+                  {favoriteTeamDetail?.name?.toUpperCase()}
+                </span>
+              </p>
+              <button onClick={handleRemoveFavo}>Change Favorite Team</button>
+            </div>
           </div>
         ) : (
           <p></p>

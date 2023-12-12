@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 import { callDataComp } from "../competition/CompetionHook";
 import { footballTeamsServices } from "@/service/allTeamList";
 import { Teams } from "@/interface/footballTeamsList";
+import Loading from "../loading";
 
 type THandleChanges = {
-  handleChanges: (selectedCompValue: Number, team: Number) => void;
+  handleChanges: (selectedCompValue: Number, team: number) => void;
 };
 
 export function CompTeamInput({ handleChanges }: THandleChanges) {
@@ -50,55 +51,53 @@ export function CompTeamInput({ handleChanges }: THandleChanges) {
   return (
     <>
       <div className="competition-team-container">
-        <section>
-          {compData && compData.length > 0 ? (
-            <form action="#">
-              {/* <label>Comptetitions</label> */}
+        {compData && compData.length > 0 ? (
+          <>
+            <div className="competition-container-reuse">
+              <form action="#">
+                {/* <label>Comptetitions</label> */}
 
-              <select
-                name="competitions"
-                id="comp"
-                value={selectedCompValue}
-                onChange={handleSelectChangeComp}
-              >
-                <option value="">Select Competition</option>
-                {compData
-                  .filter((type) => type.type === "league")
-                  .map((item) => (
+                <select
+                  name="competitions"
+                  id="comp"
+                  value={selectedCompValue}
+                  onChange={handleSelectChangeComp}
+                >
+                  <option value="">Select Competition</option>
+                  {compData
+                    .filter((type) => type.type === "league")
+                    .map((item) => (
+                      <option key={item.id} value={item.id}>
+                        {item["generic-name"]}
+                      </option>
+                    ))}
+                </select>
+                {/* <input type="submit" value="Submit" /> */}
+              </form>
+            </div>
+            <div className="team-container-reuse">
+              <form action="">
+                {/* <label htmlFor="teams">Teams</label> */}
+                <select
+                  name="teams"
+                  id="teams"
+                  value={selectedTeamsValue}
+                  onChange={handleSelectChangeTeam}
+                >
+                  <option value="">Select Team</option>
+
+                  {teamsList?.map((item) => (
                     <option key={item.id} value={item.id}>
-                      {item["generic-name"]}
+                      {item["full-name"]}
                     </option>
                   ))}
-              </select>
-              {/* <input type="submit" value="Submit" /> */}
-            </form>
-          ) : (
-            <p>loading..</p>
-          )}
-        </section>
-        <section>
-          {/* {teamsList && teamsList.length > 0 ? ( */}
-          <form action="">
-            {/* <label htmlFor="teams">Teams</label> */}
-            <select
-              name="teams"
-              id="teams"
-              value={selectedTeamsValue}
-              onChange={handleSelectChangeTeam}
-            >
-              <option value="">Select Team</option>
-
-              {teamsList?.map((item) => (
-                <option key={item.id} value={item.id}>
-                  {item["full-name"]}
-                </option>
-              ))}
-            </select>
-          </form>
-          {/* ) : (
-          <p>Select competition first..</p>
-        )} */}
-        </section>
+                </select>
+              </form>
+            </div>
+          </>
+        ) : (
+          <Loading />
+        )}
       </div>
     </>
   );

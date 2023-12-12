@@ -11,14 +11,14 @@ type THandleChanges = {
 };
 
 export function FiveDaysDynamic({ handleChanges }: THandleChanges) {
-  const [pickDateStart, setPickDateStart] = useState<Date | null>(new Date());
-  const [pickDateEnd, setPickDateEnd] = useState<Date | null>(new Date());
+  const [pickDateStart, setPickDateStart] = useState<Date>(new Date());
+  const [pickDateEnd, setPickDateEnd] = useState<Date>(new Date());
   const [pickDate, setPickDate] = useState<string>("");
 
   // handle picking date from date picker
   //   const handleDatePicker = (date: Date | null) => {
 
-  const handleDatePicker: ReactDatePickerProps<Date, true>["onChange"] = (
+  const handleDatePicker: ReactDatePickerProps<any, true>["onChange"] = (
     dates
   ) => {
     const [start, end]: any = dates as [Date, Date];
