@@ -197,38 +197,43 @@ function index() {
 
   return (
     <>
-      {status === "loading" ? (
-        <>
-          <Loading />
-        </>
-      ) : (
-        <>
-          <div className="index-container">
-            {/* <h1>This is new home!</h1> */}
-            <div className="index-content-container">
-              <div className="index-content-container-header">
-                <span>TOP LEAGUE</span>
+      <div className="index-container">
+        <div className="index-content-container">
+          <div className="index-content-container-header">
+            <span>TOP LEAGUE</span>
+          </div>
+
+          <div className="topleague-logo-container">
+            <div className="league-logo" onClick={() => setComId(1)}>
+              <img src="epl.png" alt="" />
+              <span>English Premiere League</span>
+            </div>
+            <div className="league-logo" onClick={() => setComId(94)}>
+              <img src="LaLiga.png" alt="" />
+              <span>LaLiga League</span>
+            </div>
+            <div className="league-logo" onClick={() => setComId(92)}>
+              <img src="bundes-logo-long.png" alt="" />
+              <span>BudesLiga League</span>
+            </div>
+            <div className="league-logo" onClick={() => setComId(93)}>
+              {/* <img src="Italian-Serie-A-Logo-2019.png" alt="" /> */}
+              <img src="serieA.png" alt="" />
+              {/* <img src="serie-a-logo.png" alt="" /> */}
+              <span>Serie A League</span>
+            </div>
+          </div>
+
+          {status === "loading" ? (
+            <>
+              <div className="loading-container">
+                <Loading />
+                <h1>Loading..</h1>
               </div>
-              <div className="topleague-logo-container">
-                <div className="league-logo" onClick={() => setComId(1)}>
-                  <img src="epl.png" alt="" />
-                  <span>English Premiere League</span>
-                </div>
-                <div className="league-logo" onClick={() => setComId(94)}>
-                  <img src="LaLiga.png" alt="" />
-                  <span>LaLiga League</span>
-                </div>
-                <div className="league-logo" onClick={() => setComId(92)}>
-                  <img src="bundes-logo-long.png" alt="" />
-                  <span>BudesLiga League</span>
-                </div>
-                <div className="league-logo" onClick={() => setComId(93)}>
-                  {/* <img src="Italian-Serie-A-Logo-2019.png" alt="" /> */}
-                  <img src="serieA.png" alt="" />
-                  {/* <img src="serie-a-logo.png" alt="" /> */}
-                  <span>Serie A League</span>
-                </div>
-              </div>
+            </>
+          ) : (
+            <>
+              {/* <h1>This is new home!</h1> */}
 
               <div className="top-league-table-container">
                 {tableHeaderStyle()}
@@ -316,10 +321,10 @@ function index() {
                   ))}
                 </div>
               </div>
-            </div>
-          </div>
-        </>
-      )}
+            </>
+          )}
+        </div>
+      </div>
     </>
   );
 }
