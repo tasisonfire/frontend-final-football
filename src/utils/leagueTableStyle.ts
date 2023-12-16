@@ -12,6 +12,7 @@ export const leagueTableStyle = {
         'url("https://img.legaseriea.it/vimages/63453431/SERIE-A_RGB_Texture__3.jpg?webp&q=70&size=2454x-")',
     },
     logo: "/Italian-Serie-A-Logo-2019.png",
+    logo1: "/serieA.png",
   },
   germany: {
     style: {

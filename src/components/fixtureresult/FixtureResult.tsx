@@ -6,7 +6,7 @@ import { callDataComp } from "@/components/competition/CompetionHook";
 import { callDataTeams } from "@/components/teams/TeamsHook";
 import { footballTeamsServices } from "@/service/allTeamList";
 import { Teams } from "@/interface/footballTeamsList";
-import { FiveDaysDynamic } from "../dynamicDays";
+import { FiveDaysDynamic } from "@/components/dynamicDays";
 
 import { workingFixture } from "@/utils/workingFixture";
 import Loading from "../loading";

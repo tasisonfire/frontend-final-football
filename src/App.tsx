@@ -4,6 +4,7 @@ import Index from "@/pages/home";
 import LeagueTable from "@/pages/table";
 import Fixture from "@/pages/fixture";
 import Team from "@/pages/team";
+import MyTeam from "@/pages/myteam";
 
 function App() {
   const router = createBrowserRouter([
@@ -23,6 +24,10 @@ function App() {
       path: "/team",
       element: <Team />,
     },
+    {
+      path: "/myteam",
+      element: <MyTeam />,
+    },
   ]);
 
   return (
@@ -39,7 +44,6 @@ function App() {
             ></i>
             Table
           </a>
-
           <a href="/fixture">
             <i
               className="fa-solid fa-calendar-days"
@@ -49,6 +53,10 @@ function App() {
           </a>
           <a href="team">
             <i className="fa-solid fa-users" style={{ color: "white" }}></i>Team
+          </a>
+          <a href="myteam">
+            <i className="fa-solid fa-user" style={{ color: "white" }}></i>My
+            Team
           </a>
         </div>
         <hr />
