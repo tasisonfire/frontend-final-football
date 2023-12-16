@@ -63,7 +63,7 @@ function index() {
       const responseLIst =
         await footballFixtureResultServices.getFootballFixtureResult(
           compId,
-          (teamId = 0)
+          teamId
         );
       setStatus("");
 
