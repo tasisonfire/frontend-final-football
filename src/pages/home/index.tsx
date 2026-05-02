@@ -31,7 +31,7 @@ function index() {
   const [compId, setComId] = useState<number>(1);
   const [teamId, setTeamId] = useState<number>(0);
 
-  const [status, setStatus] = useState("loading");
+  const [status, setStatus] = useState("");
 
   const [displayedData, setDisplayedData] = useState<Match[] | undefined>([]);
   const numberOfItemsToShow = 15;

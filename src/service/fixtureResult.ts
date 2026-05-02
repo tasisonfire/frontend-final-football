@@ -28,6 +28,7 @@ export const footballFixtureResultServices = {
         "X-RapidAPI-Host": FOOTBALL_API_HOST,
       },
     };
+
     try {
       const response = await axios.get(`${FOOTBALL_URL}${fixture}`, option);
       return handleResponse.success(response);

@@ -5,6 +5,7 @@ import LeagueTable from "@/pages/table";
 import Fixture from "@/pages/fixture";
 import Team from "@/pages/team";
 import MyTeam from "@/pages/myteam";
+import WeStride from "@/pages/westride";
 
 function App() {
   const router = createBrowserRouter([
@@ -27,6 +28,10 @@ function App() {
     {
       path: "/myteam",
       element: <MyTeam />,
+    },
+    {
+      path: "/westride",
+      element: <WeStride />,
     },
   ]);
 
